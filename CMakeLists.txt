@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wconversion -Werror -fno-omit-fra
 include_directories(/home/george/Desktop/gtest-1.6.0/include)
 include_directories(${CMAKE_SOURCE_DIR})
 
-set(SRCS kmeans.cpp kmeans.h)
+set(SRCS kmeans.cpp kmeans.h cluster.cpp cluster.h utils.cpp utils.h)
 
 add_library(kmeanslib ${SRCS})
 
