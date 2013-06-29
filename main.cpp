@@ -16,16 +16,13 @@ using namespace std;
 void  giveRandPoints(vector<DataPoint>& res,int N,int D)
 {
     srand (time_t(NULL));
-    for (int i=0;i<N;++i)
-    {
+    for (int i=0;i<N;++i) {
         DataPoint curp;
-        for (int j=0;j<D;++j)
-        {
+        for (int j=0;j<D;++j) {
             curp.coords.push_back(double(rand()) / double(RAND_MAX));
         }
         curp.weight=1.0;//(-1.0 + 2.0 * double(rand()) / double(RAND_MAX)) * 100.0;
         res.push_back(curp);
-
     }
 }
 
@@ -33,12 +30,13 @@ TEST(kmeans_test,initial)
 {
     int dim = 2;
     int N =1000;
-    int clust_num = 9;
+    int clust_num = 8;
     vector<DataPoint> all_points;
     giveRandPoints(all_points,N, dim);
     Kmeans my_kmeans(clust_num,all_points);
     my_kmeans.perform(1e-15);
     my_kmeans.print();
+    cout << "here " << my_kmeans.overallLoss() << endl;
     EXPECT_EQ(my_kmeans.totalWeight(),N);
 }
 

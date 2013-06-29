@@ -2,6 +2,7 @@
 #include <sstream>
 #include <cstdlib>
 #include "cluster.h"
+#include "utils.h"
 
 DataPoint::DataPoint(const std::vector<double> &vv, double w)
     : coords(vv), weight(w)
@@ -57,4 +58,12 @@ void Cluster::push(const DataPoint &p)
 void Cluster::clear()
 {
     _points.clear();
+}
+
+double Cluster::loss()
+{
+    double loss = 0.;
+    for (int i=0; i<_points.size(); ++i)
+        loss += euclidDistance(_points[i], _centroid);
+    return loss;
 }

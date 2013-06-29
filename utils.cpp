@@ -2,7 +2,7 @@
 #include <cmath>
 #include "utils.h"
 
-double locdistance(const DataPoint &p1, const DataPoint &p2)
+double euclidDistance(const DataPoint &p1, const DataPoint &p2)
 {
     assert(p1.coords.size() == p2.coords.size());
 
@@ -20,7 +20,7 @@ bool evaluateCond(const std::vector<DataPoint> &old_centroids,
     assert(old_centroids.size() == new_centroids.size());
 
     for (int i=0; i<old_centroids.size(); ++i)
-        if (sqrt(locdistance(old_centroids[i], new_centroids[i])) >= error)
+        if (sqrt(euclidDistance(old_centroids[i], new_centroids[i])) >= error)
             return false;
     return true;
 }

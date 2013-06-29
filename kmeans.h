@@ -21,7 +21,7 @@ public:
     void perform(double);
     double totalWeight();
     void print();
-
+    double overallLoss();
 private:
     int _parsePoints(std::string, uint);
     void _initialize();

@@ -51,6 +51,14 @@ void Kmeans::print()
        std::cout << "\n\n" << _clusters[i].getCentroid().print() << std::endl;
 }
 
+double Kmeans::overallLoss()
+{
+    double overall_loss = 0.;
+    for (int i=0; i<_clusters.size(); ++i)
+        overall_loss += _clusters[i].loss();
+    return overall_loss;
+}
+
 int
 Kmeans::_parsePoints(std::string filename, uint num_of_dimensions)
 {
@@ -106,7 +114,7 @@ int Kmeans::_findNearestCluster(const DataPoint &p)
     int nearest_cluster_id = -1;
     double nearest_dist = 1e16;
     for (int cluster_id=0; cluster_id<_clusters.size(); ++cluster_id) {
-        double cur_dist = locdistance(p, _clusters[cluster_id].getCentroid());
+        double cur_dist = euclidDistance(p, _clusters[cluster_id].getCentroid());
         if (cur_dist < nearest_dist) {
             nearest_dist = cur_dist;
             nearest_cluster_id = cluster_id;

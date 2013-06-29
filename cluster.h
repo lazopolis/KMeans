@@ -29,6 +29,7 @@ public:
     DataPoint getCentroid();
     void push(const DataPoint &);
     void clear();
+    double loss();
 };
 
 #endif // CLUSTER_H
